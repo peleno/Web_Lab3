@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LLighty</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="container header">
+            <div class="header__title">My Shop</div>
+            <nav class="header__nav">
+                <ul class="header__nav__items">
+                    <li class="header__nav__item">My Lamps</li>
+                    <li class="header__nav__item">Create Lamp</li>
+                </ul>
+            </nav>
+            <form class="header__form">
+                <input
+                    id="search-field"
+                    class="header__input"
+                    type="text"
+                    name="text"
+                    placeholder="Type something..."
+                />
+                <input
+                    id="search-button"
+                    class="header__search button"
+                    type="submit"
+                    name="search"
+                    value="Search"
+                />
+                <input
+                    id="clear-button"
+                    class="header__clear button"
+                    type="submit"
+                    name="clear"
+                    value="Clear"
+                />
+            </form>
+        </header>
+        <div class="container">
+            <aside class="side-panel">
+                <h2 class="side-panel__heading">Mange Lamps</h2>
+                <form class="side-panel__sort">
+                    <label class="side-panel__sort__text">
+                        Sort by the most expensive lamps
+                    </label>
+                    <label class="side-panel__sort__switch">
+                        <input id="switch" type="checkbox" />
+                        <span class="slider"></span>
+                    </label>
+                </form>
+                <form class="side-panel__total">
+                    <label class="side-panel__total__text">
+                        Count total price:
+                    </label>
+                    <button id="count-button" class="side-panel__total__button">
+                        Count
+                    </button>
+                </form>
+                <div class="side-panel__expenses">
+                    <span>Total price:</span>
+                    <span
+                        id="price-placeholder"
+                        class="side-panel__expenses__price"
+                        >0 UAH</span
+                    >
+                </div>
+            </aside>
+            <section id="items-container" class="items-container"></section>
+        </div>
+        <script src="./js/index.js" type="module"></script>
+    </body>
+</html>
