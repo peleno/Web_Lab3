@@ -1,0 +1,35 @@
+.create-edit {
+    padding-top: 80px;
+}
+
+.create-edit__heading {
+    text-align: center;
+    font-size: 40px;
+}
+
+.create-edit__form__list {
+    flex-direction: column;
+}
+
+.create-edit__form__list__item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.create-edit__form__list__item__input {
+    height: 30px;
+    border: 2px rgb(220, 220, 220) solid;
+    border-radius: 5px;
+    margin-top: 4px;
+    background-color: #fff;
+}
+
+.create-edit__form__submit {
+    margin-bottom: 40px;
+    color: #fff;
+    background-color: royalblue;
+    border: none;
+    height: 40px;
+    border-radius: 7px;
+}

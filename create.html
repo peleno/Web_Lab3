@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lightshop</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="css/create_edit/styles.css"
+        />
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__title">My Shop</div>
+            <nav class="header__nav">
+                <ul class="header__nav__items">
+                    <li class="header__nav__item">
+                        <a href="./index.html">My Lamps</a>
+                    </li>
+                    <li class="header__nav__item">
+                        <a href="./create.html">Create Lamp</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section class="container create-edit">
+            <h1 class="create-edit__heading">Create lamp</h1>
+            <form id="create-form" class="create-edit__form">
+                <ul class="create-edit__form__list">
+                    <li class="create-edit__form__list__item">
+                        <label
+                            class="create-edit__form__list__item__label"
+                            for=""
+                            >Style</label
+                        >
+                        <input
+                            id="style"
+                            class="create-edit__form__list__item__input"
+                            type="text"
+                        />
+                    </li>
+                    <li class="create-edit__form__list__item">
+                        <label
+                            class="create-edit__form__list__item__label"
+                            for=""
+                            >Count of bulbs</label
+                        >
+                        <input
+                            id="countOfBulbs"
+                            class="create-edit__form__list__item__input"
+                            type="number"
+                            min="1"
+                            max="5"
+                        />
+                    </li>
+                    <li class="create-edit__form__list__item">
+                        <label
+                            class="create-edit__form__list__item__label"
+                            for=""
+                            >Brand</label
+                        >
+                        <input
+                            id="brand"
+                            class="create-edit__form__list__item__input"
+                            type="text"
+                        />
+                    </li>
+                    <li class="create-edit__form__list__item">
+                        <label
+                            class="create-edit__form__list__item__label"
+                            for=""
+                            >Price in UAH</label
+                        >
+                        <input
+                            id="priceInUAH"
+                            class="create-edit__form__list__item__input"
+                            type="number"
+                            min="0"
+                        />
+                    </li>
+                    <li class="create-edit__form__list__item">
+                        <label
+                            class="create-edit__form__list__item__label"
+                            for=""
+                            >Room</label
+                        >
+                        <select
+                            id="room"
+                            class="create-edit__form__list__item__input"
+                            name=""
+                            id=""
+                        >
+                            <option value="bedroom">Bedroom</option>
+                            <option value="bathroom">Bathroom</option>
+                            <option value="kitchen">Kitchen</option>
+                            <option value="livingroom">Living room</option>
+                            <option value="corridor">Corridor</option>
+                            <option value="childrenroom">Children room</option>
+                            <option value="office">Office</option>
+                        </select>
+                    </li>
+                    <li class="create-edit__form__list__item">
+                        <label class="create-edit__form__list__item__label"
+                            >Height in mm</label
+                        >
+                        <input
+                            id="heightInMm"
+                            class="create-edit__form__list__item__input"
+                            type="number"
+                            min="1"
+                        />
+                    </li>
+                    <li class="create-edit__form__list__item">
+                        <label
+                            class="create-edit__form__list__item__label"
+                            for=""
+                            >Width in mm</label
+                        >
+                        <input
+                            id="widthInMm"
+                            class="create-edit__form__list__item__input"
+                            type="number"
+                            min="1"
+                        />
+                    </li>
+                    <li class="create-edit__form__list__item">
+                        <label
+                            class="create-edit__form__list__item__label"
+                            for=""
+                            >Type</label
+                        >
+                        <select
+                            id="type"
+                            class="create-edit__form__list__item__input"
+                            name=""
+                            id=""
+                        >
+                            <option value="bedside">Bedside</option>
+                            <option value="task">Task</option>
+                        </select>
+                    </li>
+
+                    <input
+                        id="submit-button"
+                        class="create-edit__form__submit"
+                        type="submit"
+                    />
+                </ul>
+            </form>
+        </section>
+        <script src="./js/create.js" type="module"></script>
+    </body>
+</html>

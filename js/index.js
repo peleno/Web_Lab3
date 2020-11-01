@@ -1,3 +1,4 @@
+import { countTotalPrice, searchByBrand, renderItems } from "./dom_utils.js";
 let lamps = [
     {
         id: 12,
@@ -48,6 +49,7 @@ let lamps = [
         type: "Table lamp",
     },
 ];
+
 let sortSwitch = document.getElementById("switch");
 let pricePlaceholder = document.getElementById("price-placeholder");
 let countButton = document.getElementById("count-button");
@@ -55,44 +57,6 @@ let searchField = document.getElementById("search-field");
 let serachButton = document.getElementById("search-button");
 let clearButton = document.getElementById("clear-button");
 let displayedLamps = [...lamps];
-
-const itemTemplate = (lamp) => `
-<div class="item">
-    <div class="item__image">
-        <img src="./images/lamp${lamp.id}.jpg" alt="Lucide lamp" />
-    </div>
-    <div class="item__characteristics">
-        <div>Style: ${lamp.style}</div>
-        <div>Count of bulbs: ${lamp.countOfBulbs}</div>
-        <div>Brand: ${lamp.brand}</div>
-        <div>Price: ${lamp.priceInUAH} UAH</div>
-        <div>Room: ${lamp.room}</div>
-        <div>Height: ${lamp.heghtInMm / 10}cm</div>
-        <div>Width: ${lamp.widthInMm / 10}cm</div>
-        <div>Type: ${lamp.type}</div>
-    </div>
-    <div class="item__buttons">
-        <button class="item__buttons__edit">Edit</button>
-        <button class="item__buttons__remove">Remove</button>
-    </div>
-</div>`;
-
-const countTotalPrice = (lamps) => {
-    return lamps.reduce((total, lamp) => total + lamp.priceInUAH, 0);
-};
-
-const searchByBrand = (brand) => {
-    return lamps.filter((lamp) => lamp.brand == brand);
-};
-
-const renderItems = (items) => {
-    document.getElementById("items-container").innerHTML = "";
-    for (const item of items) {
-        document
-            .getElementById("items-container")
-            .insertAdjacentHTML("beforeend", itemTemplate(item));
-    }
-};
 
 renderItems(lamps);
 
