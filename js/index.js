@@ -1,54 +1,11 @@
-import { countTotalPrice, searchByBrand, renderItems } from "./dom_utils.js";
-let lamps = [
-    {
-        id: 12,
-        name: "Ellen",
-        style: "Modern",
-        countOfBulbs: 1,
-        brand: "Nordlux",
-        priceInUAH: 1200,
-        room: "Bed room",
-        heghtInMm: 405,
-        widthInMm: 200,
-        type: "Table lamp",
-    },
-    {
-        id: 10,
-        name: "Pepijn",
-        style: "Modern",
-        countOfBulbs: 1,
-        brand: "Lucide",
-        priceInUAH: 2400,
-        room: "Office",
-        heghtInMm: 280,
-        widthInMm: 250,
-        type: "Desk lamp",
-    },
-    {
-        id: 11,
-        name: "Vienda",
-        style: "Modern",
-        countOfBulbs: 1,
-        brand: "Herstal",
-        priceInUAH: 1350,
-        room: "Living room",
-        heghtInMm: 475,
-        widthInMm: 195,
-        type: "Table lamp",
-    },
-    {
-        id: 13,
-        name: "Inte skapad annu",
-        style: "Modern",
-        countOfBulbs: 1,
-        brand: "Cottex",
-        priceInUAH: 1200,
-        room: "Bed room",
-        heghtInMm: 435,
-        widthInMm: 255,
-        type: "Table lamp",
-    },
-];
+import {
+    REMOVE_BUTTON_PREFIX,
+    EDIT_BUTTON_PREFIX,
+    countTotalPrice,
+    searchByBrand,
+    renderItems,
+} from "./dom_utils.js";
+import { getAllLamps, deleteLamp, updateLamp } from "./api.js";
 
 let sortSwitch = document.getElementById("switch");
 let pricePlaceholder = document.getElementById("price-placeholder");
@@ -56,35 +13,56 @@ let countButton = document.getElementById("count-button");
 let searchField = document.getElementById("search-field");
 let serachButton = document.getElementById("search-button");
 let clearButton = document.getElementById("clear-button");
-let displayedLamps = [...lamps];
 
-renderItems(lamps);
+const onRemove = async (e) => {
+    const itemId = e.target.id.replace(REMOVE_BUTTON_PREFIX, "");
+    console.log(itemId);
+    await deleteLamp(itemId);
+    fetchAllLamps();
+};
 
-sortSwitch.addEventListener("change", (event) => {
-    if (event.target.checked) {
-        renderItems(
-            [...displayedLamps].sort((a, b) => b.priceInUAH - a.priceInUAH)
-        );
-    } else {
-        renderItems(displayedLamps);
-    }
-});
+const onEdit = async (e) => {
+    const itemId = e.target.id.replace(EDIT_BUTTON_PREFIX, "");
+    console.log(itemId);
+    localStorage.setItem("itemId", itemId);
+};
 
-countButton.addEventListener("click", (event) => {
-    event.preventDefault();
+const fetchAllLamps = async () => {
+    const lamps = await getAllLamps();
+    renderItems(lamps, onRemove, onEdit);
+    return lamps;
+};
 
-    pricePlaceholder.innerHTML = `${countTotalPrice(displayedLamps)} UAH`;
-});
+fetchAllLamps().then((lamps) => {
+    let displayedLamps = [...lamps];
+    sortSwitch.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            renderItems(
+                [...displayedLamps].sort((a, b) => b.priceInUAH - a.priceInUAH),
+                onRemove,
+                onEdit
+            );
+        } else {
+            renderItems(displayedLamps, onRemove, onEdit);
+        }
+    });
 
-serachButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    displayedLamps = searchByBrand(searchField.value);
-    renderItems(displayedLamps);
-});
+    countButton.addEventListener("click", (event) => {
+        event.preventDefault();
 
-clearButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    searchField.value = "";
-    displayedLamps = lamps;
-    renderItems(displayedLamps);
+        pricePlaceholder.innerHTML = `${countTotalPrice(displayedLamps)} UAH`;
+    });
+
+    serachButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        displayedLamps = searchByBrand(displayedLamps, searchField.value);
+        renderItems(displayedLamps, onRemove, onEdit);
+    });
+
+    clearButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        searchField.value = "";
+        displayedLamps = lamps;
+        renderItems(displayedLamps, onRemove, onEdit);
+    });
 });
