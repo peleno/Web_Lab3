@@ -24,6 +24,11 @@ export const getAllLamps = async () => {
     return await response.json();
 };
 
+export const getLampById = async (id) => {
+    const response = await base_request({ urlPath: `/${id}` });
+    return await response.json();
+};
+
 export const createLamp = async (body) =>
     base_request({ method: "POST", body });
 

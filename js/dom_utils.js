@@ -67,10 +67,10 @@ export const getFormInput = () => {
     let countOfBulbs = document.getElementById("countOfBulbs").value;
     let brand = document.getElementById("brand").value;
     let priceInUAH = document.getElementById("priceInUAH").value;
-    let room = document.getElementById("room").value.toUpperCase();
+    let room = document.getElementById("room").value;
     let heightInMm = document.getElementById("heightInMm").value;
     let widthInMm = document.getElementById("widthInMm").value;
-    let type = document.getElementById("type").value.toUpperCase();
+    let type = document.getElementById("type").value;
     return {
         style,
         countOfBulbs,
@@ -85,11 +85,30 @@ export const getFormInput = () => {
 
 export const validateForm = () => {
     let fields = getFormInput();
+
+    if (
+        fields.countOfBulbs < 1 ||
+        fields.countOfBulbs > 5 ||
+        fields.heightInMm < 0 ||
+        fields.widthInMm < 0
+    ) {
+        showAlert();
+        return 1;
+    }
     for (let field of Object.values(fields)) {
         if (field == "") {
-            alert("You must fill in all the fields\nPlease, try again");
+            showAlert();
             return 1;
         }
     }
     return 0;
+};
+
+const showAlert = () => {
+    let modal = document.getElementById("modal-window");
+    var close = document.getElementsByClassName("close")[0];
+    modal.style.display = "block";
+    close.onclick = () => {
+        modal.style.display = "none";
+    };
 };
